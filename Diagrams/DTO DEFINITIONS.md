@@ -50,6 +50,7 @@ private String status;
 ## SalesRepDto
 
 ```java
+private Integer id;
 @NotEmpty
 private String name;
 ```
