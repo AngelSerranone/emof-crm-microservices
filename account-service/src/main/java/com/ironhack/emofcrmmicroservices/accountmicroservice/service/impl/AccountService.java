@@ -125,4 +125,98 @@ public class AccountService implements IAccountService {
         }
     }
 
+    public List<OppsByCityDto> getOppCountByCity() {
+        List<Object []> repoList = opportunityIdRepository.getOppCountByCity();
+        List<OppsByCityDto> dtoList = new ArrayList<>();
+        for(Object[] element: repoList) {
+            dtoList.add((new OppsByCityDto((String) element[0], (Integer) element[1])));
+        }
+        return dtoList;
+    }
+
+    public List<OppsByCountryDto> getOppsByCountry() {
+        List<Object[]> reportList = accountRepository.getOppsByCountry();
+        List<OppsByCountryDto> dtoList = new ArrayList<>();
+        for (Object[] element: reportList) {
+            dtoList.add(new OppsByCountryDto((String) element[0], (Integer) element[1]));
+        }
+        return dtoList;
+    }
+
+    public Double getMeanOppsPerAccount() {
+        List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
+        List<Integer> oppCount = new ArrayList<>();
+
+        for(Object[] element: oppsList) {
+            oppCount.add((Integer) element[1]);
+        }
+
+        Integer sum = 0;
+        for (Integer count : oppCount){
+            sum += count;
+        }
+        double mean = sum.doubleValue()/oppCount.size();
+
+        return mean;
+    }
+
+    public Integer getMaxOppsPerAccount() {
+        List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
+        List<Integer> oppCount = new ArrayList<>();
+        for(Object[] element: oppsList) {
+            oppCount.add((Integer) element[1]);
+        }
+        return Collections.max(oppCount);
+    }
+
+    public Integer getMinOppsPerAccount() {
+        List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
+        List<Integer> oppCount = new ArrayList<>();
+        for(Object[] element: oppsList) {
+            oppCount.add((Integer) element[1]);
+        }
+        return Collections.min(oppCount);
+    }
+
+    public Double getMedianOppsPerAccount() {
+        List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
+        List<Integer> oppCount = new ArrayList<>();
+        for(Object[] element: oppsList) {
+            oppCount.add((Integer) element[1]);
+        }
+
+        Collections.sort(oppCount);
+        Double median;
+        if (oppCount.size() % 2 == 0){
+            median = (oppCount.get(oppCount.size() / 2).doubleValue() + oppCount.get(oppCount.size() / 2 - 1).doubleValue())/2;}
+        else{
+            median = oppCount.get((int) Math.floor(oppCount.size() / 2)).doubleValue();}
+
+        return median;
+    }
+
+    public Double getMeanEmployeeCount() {
+        return accountRepository.findAvgEmployeeCount();
+    }
+
+    public Integer getMaxEmployeeCount() {
+        return accountRepository.findMaxEmployeeCount();
+    }
+
+    public Integer getMinEmployeeCount() {
+        return accountRepository.findMinEmployeeCount();
+    }
+
+    public Double getMedianEmployeeCount() {
+        List<Integer> employeeCountList = accountRepository.medianEmployeeCount();
+        Collections.sort(employeeCountList);
+        Double median;
+        if (employeeCountList.size() % 2 == 0){
+            median = (employeeCountList.get(employeeCountList.size() / 2).doubleValue() + employeeCountList.get(employeeCountList.size() / 2 - 1).doubleValue())/2;}
+        else{
+            median = employeeCountList.get((int) Math.floor(employeeCountList.size() / 2)).doubleValue();}
+
+        return median;
+    }
+
 }

@@ -11,4 +11,12 @@ public interface IOpportunityEdgeService {
     void closeOpportunity(CloseOpportunityDto closeOpportunityDto);
 
     OpportunityDto getOpportunity(Integer id);
+
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
 }

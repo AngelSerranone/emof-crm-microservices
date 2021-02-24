@@ -25,4 +25,24 @@ public interface OpportunityClient {
 
     @GetMapping("/report/opps-by-product/{status}")
     List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status);
+
+    @PostMapping("report/opps-by-city/{status}")
+    public List<OppsByCityDto> getOppsByCityAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status);
+
+
+
+    @PutMapping("/report/opps-by-country/{status}")
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status);
+
+    @GetMapping("/report/quantity-ordered-products/mean")
+    Double getMeanQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/max")
+    Integer getMaxQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/min")
+    Integer getMinQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/median")
+    Double getMedianQuantityOrderedProducts();
 }

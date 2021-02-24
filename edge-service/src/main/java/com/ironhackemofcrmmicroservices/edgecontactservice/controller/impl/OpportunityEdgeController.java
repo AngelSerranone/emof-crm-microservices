@@ -31,4 +31,24 @@ public class OpportunityEdgeController implements IOpportunityEdgeController {
     public void closeOpportunity(@RequestBody CloseOpportunityDto closeOpportunityDto) {
         opportunityEdgeService.closeOpportunity(closeOpportunityDto);
     }
+
+    @GetMapping("/report/quantity-ordered-products/mean")
+    public Double getMeanQuantityOrderedProducts() {
+        return opportunityEdgeService.getMeanQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/max")
+    public Integer getMaxQuantityOrderedProducts() {
+        return opportunityEdgeService.getMaxQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/min")
+    public Integer getMinQuantityOrderedProducts() {
+        return opportunityEdgeService.getMinQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/median")
+    public Double getMedianQuantityOrderedProducts() {
+        return opportunityEdgeService.getMedianQuantityOrderedProducts();
+    }
 }

@@ -1,6 +1,7 @@
 package com.ironhack.emofcrmmicroservices.leadservice.controller.impl;
 
 import com.ironhack.emofcrmmicroservices.leadservice.controller.dto.LeadDto;
+import com.ironhack.emofcrmmicroservices.leadservice.controller.interfaces.ILeadController;
 import com.ironhack.emofcrmmicroservices.leadservice.service.interfaces.ILeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class LeadController {
+public class LeadController implements ILeadController {
 
     @Autowired
     private ILeadService leadService;
@@ -39,6 +40,5 @@ public class LeadController {
     public void deleteLead(@PathVariable Integer id) {
         leadService.deleteLead(id);
     }
-
 
 }

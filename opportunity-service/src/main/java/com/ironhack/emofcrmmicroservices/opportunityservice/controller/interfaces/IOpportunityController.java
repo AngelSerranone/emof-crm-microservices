@@ -18,4 +18,16 @@ public interface IOpportunityController {
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
 
+    public List<OppsByCityDto> getOppsByCityAndStatus(List<AccountDto> accountDtoList, String status);
+
+    List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status);
+
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
+
 }

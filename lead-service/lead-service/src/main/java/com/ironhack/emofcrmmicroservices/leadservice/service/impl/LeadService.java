@@ -7,12 +7,8 @@ import com.ironhack.emofcrmmicroservices.leadservice.model.Lead;
 import com.ironhack.emofcrmmicroservices.leadservice.repository.LeadRepository;
 import com.ironhack.emofcrmmicroservices.leadservice.service.interfaces.ILeadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
-import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
-import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -27,7 +23,6 @@ public class LeadService implements ILeadService {
     @Autowired
     private SalesRepClient salesRepClient;
 
-    private CircuitBreakerFactory circuitBreakerFactory = new Resilience4JCircuitBreakerFactory();
 
     public LeadDto getLead(Integer id) {
         Lead lead = leadRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lead for that id doesn't exists"));
@@ -58,7 +53,7 @@ public class LeadService implements ILeadService {
             salesRepClient.associateLeadToSalesRep(leadDto.getSalesRepId(), lead.getId());
             return leadDto;
         } catch (ResponseStatusException exception) {
-            leadRepository.deleteById(leadDto.getId());
+            if(leadDto.getId() != null) leadRepository.deleteById(leadDto.getId());
             if(exception.getStatus().is4xxClientError()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not valid sales rep id");
             else throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "SalesRep service not available");
         }

@@ -42,4 +42,54 @@ public class AccountController implements IAccountController {
         accountService.updateAccount(updateAccountDTO);
     }
 
+    @GetMapping("/report/opps-by-city")
+    public List<OppsByCityDto> getOppCountByCity() {
+        return accountService.getOppCountByCity();
+    }
+
+    @GetMapping("/report/opps-by-country")
+    public List<OppsByCountryDto> getOppsByCountry() {
+        return accountService.getOppsByCountry();
+    }
+
+    @GetMapping("/report/opps-per-account/mean")
+    public Double getMeanOppsPerAccount() {
+        return accountService.getMeanOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/max")
+    public Integer getMaxOppsPerAccount() {
+        return accountService.getMaxOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/min")
+    public Integer getMinOppsPerAccount() {
+        return accountService.getMinOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/median")
+    public Double getMedianOppsPerAccount() {
+        return accountService.getMedianOppsPerAccount();
+    }
+
+    @GetMapping("/report/employee-count/mean")
+    public Double getMeanEmployeeCount() {
+        return accountService.getMeanEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/max")
+    public Integer getMaxEmployeeCount() {
+        return accountService.getMaxEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/min")
+    public Integer getMinEmployeeCount() {
+        return accountService.getMinEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/median")
+    public Double getMedianEmployeeCount() {
+        return accountService.getMedianEmployeeCount();
+    }
+
 }

@@ -2,6 +2,7 @@ package com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class LeadDto {
 
@@ -11,10 +12,13 @@ public class LeadDto {
 
     private Integer id;
     @NotEmpty
+    @Pattern(regexp = "(.+) (.+)", message = "Name must have first name and last name")
     private String name;
     @NotEmpty
+    @Pattern(regexp = "^[679][0-9]{8}$", message = "Not valid phone number format")
     private String phoneNumber;
     @NotEmpty
+    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid email")
     private String email;
     @NotEmpty
     private String companyName;

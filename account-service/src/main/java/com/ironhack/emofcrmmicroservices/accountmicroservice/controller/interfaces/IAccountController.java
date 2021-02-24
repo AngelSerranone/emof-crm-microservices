@@ -10,4 +10,14 @@ public interface IAccountController {
     List<AccountDTO> showAccounts();
     AccountDTO storeAccount(AccountDTO accountDTO);
     void updateAccount(UpdateAccountDTO updateAccountDTO);
+    List<OppsByCityDto> getOppCountByCity();
+    List<OppsByCountryDto> getOppsByCountry();
+    Double getMeanOppsPerAccount();
+    Integer getMaxOppsPerAccount();
+    Integer getMinOppsPerAccount();
+    Double getMedianOppsPerAccount();
+    Double getMeanEmployeeCount();
+    Integer getMaxEmployeeCount();
+    Integer getMinEmployeeCount();
+    Double getMedianEmployeeCount();
 }

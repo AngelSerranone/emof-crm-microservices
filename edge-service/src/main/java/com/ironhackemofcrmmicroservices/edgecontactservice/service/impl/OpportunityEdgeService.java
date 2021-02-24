@@ -39,4 +39,32 @@ public class OpportunityEdgeService implements IOpportunityEdgeService {
     public void closeOpportunity(CloseOpportunityDto closeOpportunityDto) {
         opportunityClient.closeOpportunity(closeOpportunityDto);
     }
+
+    private Double opportunityDoubleFallback() {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    private Double opportunityIntegerFallback() {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    public Double getMeanQuantityOrderedProducts() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("opportunity-service");
+        return storeAccountCircuitBreaker.run(() -> opportunityClient.getMeanQuantityOrderedProducts(), throwable -> opportunityDoubleFallback());
+    }
+
+    public Integer getMaxQuantityOrderedProducts() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("opportunity-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> opportunityClient.getMaxQuantityOrderedProducts(), throwable -> opportunityIntegerFallback());
+    }
+
+    public Integer getMinQuantityOrderedProducts() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("opportunity-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> opportunityClient.getMinQuantityOrderedProducts(), throwable -> opportunityIntegerFallback());
+    }
+
+    public Double getMedianQuantityOrderedProducts() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("opportunity-service");
+        return storeAccountCircuitBreaker.run(() -> opportunityClient.getMedianQuantityOrderedProducts(), throwable -> opportunityDoubleFallback());
+    }
 }

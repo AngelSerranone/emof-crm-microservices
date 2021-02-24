@@ -16,4 +16,16 @@ public interface IOpportunityService {
     List<OppsByProductDto> getOppsByProduct();
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
+
+    List<OppsByCityDto> getOppsByCityAndStatus(List<AccountDto> accountDtoList, String status);
+
+	List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status);
+
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
 }

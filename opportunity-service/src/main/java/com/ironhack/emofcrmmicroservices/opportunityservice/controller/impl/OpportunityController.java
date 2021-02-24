@@ -48,4 +48,35 @@ public class OpportunityController implements IOpportunityController {
         return opportunityService.getOppsByProductAndStatus(status);
     }
 
+    @PostMapping("report/opps-by-city/{status}")
+    public List<OppsByCityDto> getOppsByCityAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status) {
+        return opportunityService.getOppsByCityAndStatus(accountDtoList, status);
+    }
+
+    @PutMapping("/report/opps-by-country/{status}")
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status) {
+        return opportunityService.getOppsByCountryAndStatus(accountDtoList, status);
+    }
+
+    @GetMapping("/report/quantity-ordered-products/mean")
+    public Double getMeanQuantityOrderedProducts() {
+        return opportunityService.getMeanQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/max")
+    public Integer getMaxQuantityOrderedProducts() {
+        return opportunityService.getMaxQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/min")
+    public Integer getMinQuantityOrderedProducts() {
+        return opportunityService.getMinQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/median")
+    public Double getMedianQuantityOrderedProducts() {
+        return opportunityService.getMedianQuantityOrderedProducts();
+    }
+
+
 }
