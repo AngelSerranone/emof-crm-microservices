@@ -217,6 +217,29 @@ public class OpportunityService implements IOpportunityService {
         return result;
     }
 
+    public List<OppsByIndustryDto> getOppsByIndustryAndStatus(String status, List<AccountDto> accounts) {
+        HashMap<String, Integer> map = new HashMap<>();
+        String industry;
+        Status checkedStatus = checkStatusFormat(status);
+        for (AccountDto a : accounts){
+            industry = String.valueOf(a.getIndustry());
+            if (!map.containsKey(industry)) {
+                map.put(industry, 0);
+            }
+            for (Integer i : a.getOpportunityList()){
+                Opportunity opportunity = retrieveOpportunity(i);
+                if (opportunity.getStatus().equals(checkedStatus)){
+                    map.put(industry, map.get(industry) + 1);
+                }
+            }
+        }
+        List<OppsByIndustryDto> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            result.add(new OppsByIndustryDto(entry.getKey(), entry.getValue()));
+        }
+        return result;
+    }
+
     public List<OppsByCityDto> getOppsByCityAndStatus(List<AccountDto> accountDtoList, String status) {
         List<OppsByCityDto> dtoList = new ArrayList<>();
         HashMap<String, Integer> map = new HashMap<>();

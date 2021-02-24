@@ -48,6 +48,11 @@ public class OpportunityController implements IOpportunityController {
         return opportunityService.getOppsByProductAndStatus(status);
     }
 
+    @PutMapping("/report/opps-by-industry/{status}")
+    public List<OppsByIndustryDto> getOppsByIndustry(@PathVariable String status, @RequestBody List<AccountDto> accounts){
+        return opportunityService.getOppsByIndustryAndStatus(status, accounts);
+    }
+
     @PostMapping("report/opps-by-city/{status}")
     public List<OppsByCityDto> getOppsByCityAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status) {
         return opportunityService.getOppsByCityAndStatus(accountDtoList, status);
