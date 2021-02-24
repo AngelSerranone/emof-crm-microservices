@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="opportunity_sales_rep_id")
 public class OpportunityId {
 	@Id
 	private Integer oppId;
