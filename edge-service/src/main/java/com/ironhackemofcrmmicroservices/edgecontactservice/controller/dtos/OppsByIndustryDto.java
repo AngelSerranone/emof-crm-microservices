@@ -1,4 +1,4 @@
-package com.ironhack.emofcrmmicroservices.accountmicroservice.controller.dto;
+package com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos;
 
 public class OppsByIndustryDto {
     private String industry;
