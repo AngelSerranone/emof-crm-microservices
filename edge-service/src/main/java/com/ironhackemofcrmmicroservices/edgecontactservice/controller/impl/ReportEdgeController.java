@@ -1,6 +1,7 @@
 package com.ironhackemofcrmmicroservices.edgecontactservice.controller.impl;
 
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadsBySalesRepDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByCountryDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByProductDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsBySalesRepDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.interfaces.IReportEdgeController;
@@ -42,5 +43,15 @@ public class ReportEdgeController implements IReportEdgeController {
     @GetMapping("/report/opps-by-product/{status}")
     public List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status) {
         return reportEdgeService.getOppsByProductAndStatus(status);
+    }
+
+    @GetMapping("/report/opps-by-country")
+    public List<OppsByCountryDto> getOppsByCountry() {
+        return reportEdgeService.getOppsByCountry();
+    }
+
+    @GetMapping("/report/opps-by-country/{status}")
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(String status) {
+        return reportEdgeService.getOppsByCountryAndStatus(status);
     }
 }

@@ -25,4 +25,8 @@ public interface OpportunityClient {
 
     @GetMapping("/report/opps-by-product/{status}")
     List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status);
+
+    @PutMapping("/report/opps-by-country/{status}")
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status);
+
 }

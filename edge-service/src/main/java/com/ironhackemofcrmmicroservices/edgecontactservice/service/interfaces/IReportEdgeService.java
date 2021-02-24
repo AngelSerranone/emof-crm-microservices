@@ -1,6 +1,7 @@
 package com.ironhackemofcrmmicroservices.edgecontactservice.service.interfaces;
 
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadsBySalesRepDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByCountryDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByProductDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsBySalesRepDto;
 
@@ -16,4 +17,8 @@ public interface IReportEdgeService {
     List<OppsByProductDto> getOppsByProduct();
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
+
+	List<OppsByCountryDto> getOppsByCountry();
+
+    List<OppsByCountryDto> getOppsByCountryAndStatus(String status);
 }

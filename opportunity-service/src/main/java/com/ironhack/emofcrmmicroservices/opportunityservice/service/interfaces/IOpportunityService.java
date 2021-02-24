@@ -16,4 +16,6 @@ public interface IOpportunityService {
     List<OppsByProductDto> getOppsByProduct();
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
+
+	List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status);
 }

@@ -11,6 +11,4 @@ import java.util.List;
 public interface OpportunityRepository extends JpaRepository<OpportunityId, Integer> {
     @Query("SELECT CAST(s.id AS int), CAST(COUNT(*) AS int) FROM OpportunityId o JOIN SalesRep s ON o.salesRep = s.id GROUP BY o.salesRep")
     List<Object[]> getOppCountBySalesRep();
-
-
 }

@@ -9,4 +9,5 @@ public interface IAccountService {
     List<AccountDTO> showAccounts();
     AccountDTO storeAccount(AccountDTO accountDTO);
     void updateAccount(UpdateAccountDTO updateAccountDTO);
+    List<OppsByCountryDto> getOppsByCountry();
 }

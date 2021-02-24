@@ -125,4 +125,13 @@ public class AccountService implements IAccountService {
         }
     }
 
+    public List<OppsByCountryDto> getOppsByCountry() {
+        List<Object[]> reportList = accountRepository.getOppsByCountry();
+        List<OppsByCountryDto> dtoList = new ArrayList<>();
+        for (Object[] element: reportList) {
+            dtoList.add(new OppsByCountryDto((String) element[0], (Integer) element[1]));
+        }
+        return dtoList;
+    }
+
 }

@@ -217,6 +217,23 @@ public class OpportunityService implements IOpportunityService {
         return result;
     }
 
+    @Override
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status) {
+        List<OppsByCountryDto> dtoList = new ArrayList<>();
+        Status checkedStatus = checkStatusFormat(status);
+        for (AccountDto element : accountDtoList) {
+            int oppCount = 0;
+            for (Integer oppId : element.getOpportunityList()) {
+                Opportunity opportunity = retrieveOpportunity(oppId);
+                if (opportunity.getStatus().equals(checkedStatus)) {
+                    oppCount++;
+                }
+            }
+            dtoList.add(new OppsByCountryDto(element.getCountry(), oppCount));
+        }
+        return dtoList;
+    }
+
     private Opportunity retrieveOpportunity(Integer opportunityId) {
         Optional<Opportunity> opportunity = opportunityRepository.findById(opportunityId);
         if (opportunity.isEmpty()) {
@@ -238,4 +255,6 @@ public class OpportunityService implements IOpportunityService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect status format: CLOSED-WON / CLOSED-LOST");
         }
     }
+
+
 }

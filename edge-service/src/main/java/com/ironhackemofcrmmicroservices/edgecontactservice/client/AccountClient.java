@@ -1,6 +1,7 @@
 package com.ironhackemofcrmmicroservices.edgecontactservice.client;
 
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.AccountDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByCountryDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.UpdateAccountDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,8 @@ public interface AccountClient {
     @PutMapping("/update-account")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void updateAccount(@RequestBody @Valid UpdateAccountDto updateAccountDTO);
+
+    @GetMapping("/report/opps-by-country")
+    List<OppsByCountryDto> getOppsByCountry();
 }
 

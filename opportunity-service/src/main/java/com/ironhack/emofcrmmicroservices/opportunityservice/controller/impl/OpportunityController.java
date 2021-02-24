@@ -48,4 +48,9 @@ public class OpportunityController implements IOpportunityController {
         return opportunityService.getOppsByProductAndStatus(status);
     }
 
+    @PutMapping("/report/opps-by-country/{status}")
+    public List<OppsByCountryDto> getOppsByCountryAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status) {
+        return opportunityService.getOppsByCountryAndStatus(accountDtoList, status);
+    }
+
 }

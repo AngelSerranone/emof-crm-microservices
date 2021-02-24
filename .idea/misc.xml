@@ -10,7 +10,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/opportunity-service/pom.xml" />
         <option value="$PROJECT_DIR$/opportunityEdge-service/pom.xml" />
         <option value="$PROJECT_DIR$/edge-service/pom.xml" />
         <option value="$PROJECT_DIR$/salesRep-service/pom.xml" />

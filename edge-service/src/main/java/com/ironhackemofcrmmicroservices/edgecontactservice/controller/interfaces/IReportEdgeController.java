@@ -1,9 +1,6 @@
 package com.ironhackemofcrmmicroservices.edgecontactservice.controller.interfaces;
 
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadsBySalesRepDto;
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByProductDto;
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsBySalesRepDto;
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.SalesRepDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -18,4 +15,8 @@ public interface IReportEdgeController {
     List<OppsByProductDto> getOppsByProduct();
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
+
+    List<OppsByCountryDto> getOppsByCountry();
+
+    List<OppsByCountryDto> getOppsByCountryAndStatus(String status);
 }

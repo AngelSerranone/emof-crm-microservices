@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="salesRep-service" />
         <module name="opportunityEdge-service" />
-        <module name="opportunity-service" />
         <module name="edge-service" />
       </profile>
     </annotationProcessing>

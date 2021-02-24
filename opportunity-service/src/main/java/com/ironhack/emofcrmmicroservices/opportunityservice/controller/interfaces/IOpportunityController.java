@@ -18,4 +18,6 @@ public interface IOpportunityController {
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
 
+    List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status);
+
 }
