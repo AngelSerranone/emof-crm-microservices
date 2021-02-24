@@ -29,5 +29,29 @@ public interface AccountClient {
 
     @GetMapping("/report/opps-by-country")
     List<OppsByCountryDto> getOppsByCountry();
+
+    @GetMapping("/report/opps-per-account/mean")
+    Double getMeanOppsPerAccount();
+
+    @GetMapping("/report/opps-per-account/max")
+    Integer getMaxOppsPerAccount();
+
+    @GetMapping("/report/opps-per-account/min")
+    Integer getMinOppsPerAccount();
+
+    @GetMapping("/report/opps-per-account/median")
+    Double getMedianOppsPerAccount();
+
+    @GetMapping("/report/employee-count/mean")
+    Double getMeanEmployeeCount();
+
+    @GetMapping("/report/employee-count/max")
+    Integer getMaxEmployeeCount();
+
+    @GetMapping("/report/employee-count/min")
+    Integer getMinEmployeeCount();
+
+    @GetMapping("/report/employee-count/median")
+    Double getMedianEmployeeCount();
 }
 

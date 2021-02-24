@@ -257,4 +257,30 @@ public class OpportunityService implements IOpportunityService {
     }
 
 
+    public Double getMeanQuantityOrderedProducts(){
+        return opportunityRepository.findAvgProductsOrdered();
+    }
+
+    public Integer getMaxQuantityOrderedProducts(){
+        return opportunityRepository.findMaxProductsOrdered();
+    }
+
+    public Integer getMinQuantityOrderedProducts(){
+        return opportunityRepository.findMinProductsOrdered();
+    }
+
+    public Double getMedianQuantityOrderedProducts(){
+        List<Integer> quantityList = opportunityRepository.findProductsOrdered();
+
+        Collections.sort(quantityList);
+        Double median;
+        if (quantityList.size() % 2 == 0){
+            median = (quantityList.get(quantityList.size() / 2).doubleValue() + quantityList.get(quantityList.size() / 2 - 1).doubleValue())/2;}
+        else{
+            median = quantityList.get((int) Math.floor(quantityList.size() / 2)).doubleValue();}
+
+        return median;
+    }
+
+
 }

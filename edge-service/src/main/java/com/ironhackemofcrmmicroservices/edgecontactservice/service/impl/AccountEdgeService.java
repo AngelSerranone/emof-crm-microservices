@@ -52,4 +52,57 @@ public class AccountEdgeService implements IAccountEdgeService {
     public void updateAccount(UpdateAccountDto updateAccountDto) {
         accountClient.updateAccount(updateAccountDto);
     }
+
+    private Double accountDoubleFallback() {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    private Double accountIntegerFallback() {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    public Double getMeanOppsPerAccount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return storeAccountCircuitBreaker.run(() -> accountClient.getMeanOppsPerAccount(), throwable -> accountDoubleFallback());
+    }
+
+    public Integer getMaxOppsPerAccount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> accountClient.getMaxOppsPerAccount(), throwable -> accountIntegerFallback());
+    }
+
+
+    public Integer getMinOppsPerAccount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> accountClient.getMinOppsPerAccount(), throwable -> accountIntegerFallback());
+    }
+
+
+    public Double getMedianOppsPerAccount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return storeAccountCircuitBreaker.run(() -> accountClient.getMedianOppsPerAccount(), throwable -> accountDoubleFallback());
+    }
+
+
+    public Double getMeanEmployeeCount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return storeAccountCircuitBreaker.run(() -> accountClient.getMeanEmployeeCount(), throwable -> accountDoubleFallback());
+    }
+
+    public Integer getMaxEmployeeCount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> accountClient.getMaxEmployeeCount(), throwable -> accountIntegerFallback());
+    }
+
+
+    public Integer getMinEmployeeCount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return (Integer) storeAccountCircuitBreaker.run(() -> accountClient.getMinEmployeeCount(), throwable -> accountIntegerFallback());
+    }
+
+
+    public Double getMedianEmployeeCount() {
+        CircuitBreaker storeAccountCircuitBreaker = circuitBreakerFactory.create("account-service");
+        return storeAccountCircuitBreaker.run(() -> accountClient.getMedianEmployeeCount(), throwable -> accountDoubleFallback());
+    }
 }

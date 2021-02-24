@@ -29,4 +29,15 @@ public interface OpportunityClient {
     @PutMapping("/report/opps-by-country/{status}")
     public List<OppsByCountryDto> getOppsByCountryAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status);
 
+    @GetMapping("/report/quantity-ordered-products/mean")
+    Double getMeanQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/max")
+    Integer getMaxQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/min")
+    Integer getMinQuantityOrderedProducts();
+
+    @GetMapping("/report/quantity-ordered-products/median")
+    Double getMedianQuantityOrderedProducts();
 }

@@ -20,4 +20,12 @@ public interface IOpportunityController {
 
     List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status);
 
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
+
 }
