@@ -1,8 +1,6 @@
 package com.ironhackemofcrmmicroservices.edgecontactservice.service.interfaces;
 
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadsBySalesRepDto;
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByProductDto;
-import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsBySalesRepDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.*;
 
 import java.util.List;
 
