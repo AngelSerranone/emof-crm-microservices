@@ -44,6 +44,16 @@ public class ReportEdgeService implements IReportEdgeService {
         return opportunityClient.getOppsByProductAndStatus(status);
     }
 
+    public List<OppsByIndustryDto> getOppsByIndustry() {
+        return accountClient.getOppsByIndustry();
+    }
+
+
+    public List<OppsByIndustryDto> getOppsByIndustryAndStatus(String status) {
+        List<AccountDto> accounts = accountClient.showAccounts();
+        return opportunityClient.getOppsByIndustryAndStatus(status, accounts);
+    }
+
     public List<OppsByCityDto> getOppCountByCity() {
         return accountClient.getOppCountByCity();
     }

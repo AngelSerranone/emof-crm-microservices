@@ -15,6 +15,10 @@ public interface IReportEdgeService {
 
     List<OppsByProductDto> getOppsByProductAndStatus(String status);
 
+    List<OppsByIndustryDto> getOppsByIndustry();
+
+    List<OppsByIndustryDto> getOppsByIndustryAndStatus(String status);
+
     List<OppsByCityDto> getOppCountByCity();
 
     List<OppsByCityDto> getOppsByCityAndStatus(String status);

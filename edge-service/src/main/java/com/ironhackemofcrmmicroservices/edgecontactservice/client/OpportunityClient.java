@@ -2,6 +2,7 @@ package com.ironhackemofcrmmicroservices.edgecontactservice.client;
 
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.*;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public interface OpportunityClient {
 
     @GetMapping("/report/opps-by-product/{status}")
     List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status);
+
+    @PutMapping("/report/opps-by-industry/{status}")
+    @ResponseStatus(HttpStatus.OK)
+    List<OppsByIndustryDto> getOppsByIndustryAndStatus(@PathVariable String status, @RequestBody List<AccountDto> accounts);
 
     @PostMapping("report/opps-by-city/{status}")
     public List<OppsByCityDto> getOppsByCityAndStatus(@RequestBody List<AccountDto> accountDtoList, @PathVariable String status);

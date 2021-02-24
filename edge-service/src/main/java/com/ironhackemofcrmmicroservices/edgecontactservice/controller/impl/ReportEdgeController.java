@@ -43,6 +43,16 @@ public class ReportEdgeController implements IReportEdgeController {
         return reportEdgeService.getOppsByProductAndStatus(status);
     }
 
+    @GetMapping("/report/opps-by-industry")
+    public List<OppsByIndustryDto> getOppsByIndustry() {
+        return reportEdgeService.getOppsByIndustry();
+    }
+
+    @GetMapping("/report/opps-by-industry/{status}")
+    public List<OppsByIndustryDto> getOppsByIndustryAndStatus(@PathVariable String status) {
+        return reportEdgeService.getOppsByIndustryAndStatus(status);
+    }
+
     @GetMapping("/report/opps-by-city")
     public List<OppsByCityDto> getOppCountByCity() {
         return reportEdgeService.getOppCountByCity();
