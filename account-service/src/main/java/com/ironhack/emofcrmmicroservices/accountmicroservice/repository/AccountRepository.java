@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
-	@Query("SELECT CAST(a.country AS int), CAST(COUNT(*) AS int) FROM OpportunityId o JOIN Account a ON o.account_id = a.id GROUP BY o.account_id")
+	@Query("SELECT CAST(a.country AS int), CAST(COUNT(*) AS int) FROM OpportunityId o JOIN Account a ON o.account = a.id GROUP BY o.account")
 	List<Object[]> getOppsByCountry();
 }

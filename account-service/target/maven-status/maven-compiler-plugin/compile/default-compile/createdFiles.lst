@@ -10,5 +10,6 @@ com\ironhack\emofcrmmicroservices\accountmicroservice\service\interfaces\IAccoun
 com\ironhack\emofcrmmicroservices\accountmicroservice\controller\impl\AccountController.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\service\impl\AccountService.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\AccountMicroserviceApplication.class
+com\ironhack\emofcrmmicroservices\accountmicroservice\controller\dto\OppsByCountryDto.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\controller\dto\UpdateAccountDTO.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\enums\Industry.class
