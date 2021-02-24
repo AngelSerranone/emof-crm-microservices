@@ -3,6 +3,7 @@ package com.ironhackemofcrmmicroservices.edgecontactservice.service.impl;
 import com.ironhackemofcrmmicroservices.edgecontactservice.client.OpportunityClient;
 import com.ironhackemofcrmmicroservices.edgecontactservice.client.SalesRepClient;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadsBySalesRepDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsByProductDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.OppsBySalesRepDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.SalesRepDto;
 import com.ironhackemofcrmmicroservices.edgecontactservice.service.interfaces.IReportEdgeService;
@@ -31,5 +32,13 @@ public class ReportEdgeService implements IReportEdgeService {
     public List<OppsBySalesRepDto> getOppsBySalesRepAndStatus(String status) {
         List<SalesRepDto> salesRepDtoList = salesRepClient.getAllSalesRep();
         return opportunityClient.getOppsBySalesRepAndStatus(salesRepDtoList, status);
+    }
+
+    public List<OppsByProductDto> getOppsByProduct() {
+        return opportunityClient.getOppsByProduct();
+    }
+
+    public List<OppsByProductDto> getOppsByProductAndStatus(String status) {
+        return opportunityClient.getOppsByProductAndStatus(status);
     }
 }

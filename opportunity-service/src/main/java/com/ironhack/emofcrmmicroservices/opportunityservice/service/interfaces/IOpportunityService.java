@@ -12,4 +12,8 @@ public interface IOpportunityService {
     void closeOpportunity(CloseOpportunityDto closeOpportunityDto);
 
     List<OppsBySalesRepDto> getOppsBySalesRepAndStatus(List<SalesRepDto> salesRepDtoList, String status);
+
+    List<OppsByProductDto> getOppsByProduct();
+
+    List<OppsByProductDto> getOppsByProductAndStatus(String status);
 }

@@ -19,4 +19,10 @@ public interface OpportunityClient {
 
     @PutMapping("/report/opps-by-salesRep/{status}")
     List<OppsBySalesRepDto> getOppsBySalesRepAndStatus(@RequestBody List<SalesRepDto> salesRepDtoList, @PathVariable String status);
+
+    @GetMapping("/report/opps-by-product")
+    List<OppsByProductDto> getOppsByProduct();
+
+    @GetMapping("/report/opps-by-product/{status}")
+    List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status);
 }

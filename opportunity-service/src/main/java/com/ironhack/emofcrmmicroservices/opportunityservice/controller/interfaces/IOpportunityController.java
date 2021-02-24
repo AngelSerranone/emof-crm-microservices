@@ -14,4 +14,8 @@ public interface IOpportunityController {
 
     List<OppsBySalesRepDto> getOppsBySalesRepAndStatus(List<SalesRepDto> salesRepDtoList, String status);
 
+    List<OppsByProductDto> getOppsByProduct();
+
+    List<OppsByProductDto> getOppsByProductAndStatus(String status);
+
 }

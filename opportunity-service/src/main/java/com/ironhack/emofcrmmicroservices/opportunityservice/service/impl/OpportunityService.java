@@ -18,9 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OpportunityService implements IOpportunityService {
@@ -176,6 +174,47 @@ public class OpportunityService implements IOpportunityService {
             dtoList.add(new OppsBySalesRepDto(element.getId(), oppCount));
         }
         return dtoList;
+    }
+
+    public List<OppsByProductDto> getOppsByProduct() {
+        List<Opportunity> oppList = opportunityRepository.findAll();
+        HashMap<String, Integer> map = new HashMap<>();
+        String product;
+        for (Opportunity o : oppList) {
+            product = String.valueOf(o.getProduct());
+            if (map.containsKey(product)) {
+                map.put(product, map.get(product) + 1);
+            } else {
+                map.put(product, 1);
+            }
+        }
+        List<OppsByProductDto> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            result.add(new OppsByProductDto(entry.getKey(), entry.getValue()));
+        }
+        return result;
+    }
+
+    public List<OppsByProductDto> getOppsByProductAndStatus(String status) {
+        List<Opportunity> oppList = opportunityRepository.findAll();
+        HashMap<String, Integer> map = new HashMap<>();
+        String product;
+        Status checkedStatus = checkStatusFormat(status);
+        for (Opportunity o : oppList) {
+            if (o.getStatus().equals(checkedStatus)) {
+                product = String.valueOf(o.getProduct());
+                if (map.containsKey(product)) {
+                    map.put(product, map.get(product) + 1);
+                } else {
+                    map.put(product, 1);
+                }
+            }
+        }
+        List<OppsByProductDto> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            result.add(new OppsByProductDto(entry.getKey(), entry.getValue()));
+        }
+        return result;
     }
 
     private Opportunity retrieveOpportunity(Integer opportunityId) {

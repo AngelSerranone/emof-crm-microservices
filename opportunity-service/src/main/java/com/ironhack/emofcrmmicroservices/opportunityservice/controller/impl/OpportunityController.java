@@ -37,4 +37,15 @@ public class OpportunityController implements IOpportunityController {
     public List<OppsBySalesRepDto> getOppsBySalesRepAndStatus(@RequestBody List<SalesRepDto> salesRepDtoList, @PathVariable String status) {
         return opportunityService.getOppsBySalesRepAndStatus(salesRepDtoList, status);
     }
+
+    @GetMapping("/report/opps-by-product")
+    public List<OppsByProductDto> getOppsByProduct() {
+        return opportunityService.getOppsByProduct();
+    }
+
+    @GetMapping("/report/opps-by-product/{status}")
+    public List<OppsByProductDto> getOppsByProductAndStatus(@PathVariable String status) {
+        return opportunityService.getOppsByProductAndStatus(status);
+    }
+
 }
