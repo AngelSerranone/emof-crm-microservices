@@ -20,26 +20,32 @@ public class AccountController implements IAccountController {
 
     @GetMapping("/get-account/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AccountDTO showAccount(@PathVariable Integer id) {
+    public AccountDto showAccount(@PathVariable Integer id) {
         return accountService.showAccount(id);
     }
 
     @GetMapping("/get-account")
     @ResponseStatus(HttpStatus.OK)
-    public List<AccountDTO> showAccounts() {
+    public List<AccountDto> showAccounts() {
         return accountService.showAccounts();
     }
 
     @PostMapping("/store-account")
     @ResponseStatus(HttpStatus.CREATED)
-    public AccountDTO storeAccount(@RequestBody @Valid AccountDTO accountDTO) {
+    public AccountDto storeAccount(@RequestBody @Valid AccountDto accountDTO) {
         return accountService.storeAccount(accountDTO);
     }
 
     @PutMapping("/update-account")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAccount(@RequestBody @Valid UpdateAccountDTO updateAccountDTO) {
-        accountService.updateAccount(updateAccountDTO);
+    public void updateAccount(@RequestBody @Valid UpdateAccountDto updateAccountDto) {
+        accountService.updateAccount(updateAccountDto);
+    }
+
+    @GetMapping("/report/opps-by-industry")
+    @ResponseStatus(HttpStatus.OK)
+    public List<OppsByIndustryDto> getOppsByIndustry() {
+        return accountService.getOppsByIndustry();
     }
 
     @GetMapping("/report/opps-by-city")

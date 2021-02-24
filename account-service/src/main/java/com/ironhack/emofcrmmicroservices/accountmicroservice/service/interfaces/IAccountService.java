@@ -5,10 +5,11 @@ import com.ironhack.emofcrmmicroservices.accountmicroservice.controller.dto.*;
 import java.util.*;
 
 public interface IAccountService {
-    AccountDTO showAccount(Integer id);
-    List<AccountDTO> showAccounts();
-    AccountDTO storeAccount(AccountDTO accountDTO);
-    void updateAccount(UpdateAccountDTO updateAccountDTO);
+    AccountDto showAccount(Integer id);
+    List<AccountDto> showAccounts();
+    AccountDto storeAccount(AccountDto accountDTO);
+    void updateAccount(UpdateAccountDto updateAccountDto);
+    List<OppsByIndustryDto> getOppsByIndustry();
     List<OppsByCityDto> getOppCountByCity();
     List<OppsByCountryDto> getOppsByCountry();
     Double getMeanOppsPerAccount();

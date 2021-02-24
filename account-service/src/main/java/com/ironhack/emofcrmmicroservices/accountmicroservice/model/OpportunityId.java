@@ -3,6 +3,7 @@ package com.ironhack.emofcrmmicroservices.accountmicroservice.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="opportunity_account_id")
 public class OpportunityId {
     @Id
     private Integer opportunityId;

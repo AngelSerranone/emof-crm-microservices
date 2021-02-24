@@ -25,7 +25,7 @@ public class AccountService implements IAccountService {
     @Autowired
     private OpportunityIdRepository opportunityIdRepository;
 
-    public AccountDTO showAccount(Integer id) {
+    public AccountDto showAccount(Integer id) {
 
         Optional<Account> account = accountRepository.findById(id);
 
@@ -43,7 +43,7 @@ public class AccountService implements IAccountService {
                 opportunities.add(account.get().getOpportunityList().get(i).getOpportunityId());
             }
 
-            return new AccountDTO(id, account.get().getIndustry().toString(), account.get().getEmployeeCount(),
+            return new AccountDto(id, account.get().getIndustry().toString(), account.get().getEmployeeCount(),
                     account.get().getCity(), account.get().getCountry(), contacts, opportunities);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -51,10 +51,10 @@ public class AccountService implements IAccountService {
 
     }
 
-    public List<AccountDTO> showAccounts() {
+    public List<AccountDto> showAccounts() {
 
         List<Account> accountList = accountRepository.findAll();
-        List<AccountDTO> accountDTOList = new ArrayList<>();
+        List<AccountDto> accountDTOList = new ArrayList<>();
 
         for (Account account : accountList) {
 
@@ -70,14 +70,14 @@ public class AccountService implements IAccountService {
                 opportunities.add(account.getOpportunityList().get(i).getOpportunityId());
             }
 
-            accountDTOList.add(new AccountDTO(account.getId(), account.getIndustry().toString(), account.getEmployeeCount(), account.getCity(),
+            accountDTOList.add(new AccountDto(account.getId(), account.getIndustry().toString(), account.getEmployeeCount(), account.getCity(),
                     account.getCountry(), contacts, opportunities));
         }
         return accountDTOList;
 
     }
 
-    public AccountDTO storeAccount(AccountDTO accountDTO) {
+    public AccountDto storeAccount(AccountDto accountDTO) {
 
         List<ContactId> contacts = new ArrayList<>();
         List<OpportunityId> opportunities = new ArrayList<>();
@@ -109,13 +109,13 @@ public class AccountService implements IAccountService {
         return accountDTO;
     }
 
-    public void updateAccount(UpdateAccountDTO updateAccountDTO) {
-        Optional<Account> account = accountRepository.findById(updateAccountDTO.getAccountId());
+    public void updateAccount(UpdateAccountDto updateAccountDto) {
+        Optional<Account> account = accountRepository.findById(updateAccountDto.getAccountId());
 
         if (account.isPresent()) {
 
-            ContactId contactId = new ContactId(updateAccountDTO.getContactId(), account.get());
-            OpportunityId opportunityId = new OpportunityId(updateAccountDTO.getOpportunityId(), account.get());
+            ContactId contactId = new ContactId(updateAccountDto.getContactId(), account.get());
+            OpportunityId opportunityId = new OpportunityId(updateAccountDto.getOpportunityId(), account.get());
 
             contactIdRepository.save(contactId);
             opportunityIdRepository.save(opportunityId);
@@ -123,6 +123,26 @@ public class AccountService implements IAccountService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
+
+
+    public List<OppsByIndustryDto> getOppsByIndustry() {
+        List<OpportunityId> oppsId = opportunityIdRepository.findAll();
+        HashMap<String, Integer> map = new HashMap<>();
+        String industry;
+        for (OpportunityId o : oppsId) {
+            industry = String.valueOf(o.getAccount().getIndustry());
+            if (map.containsKey(industry)) {
+                map.put(industry, map.get(industry) + 1);
+            } else {
+                map.put(industry, 1);
+            }
+        }
+        List<OppsByIndustryDto> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            result.add(new OppsByIndustryDto(entry.getKey(), entry.getValue()));
+        }
+        return result;
     }
 
     public List<OppsByCityDto> getOppCountByCity() {
@@ -218,5 +238,6 @@ public class AccountService implements IAccountService {
 
         return median;
     }
+
 
 }

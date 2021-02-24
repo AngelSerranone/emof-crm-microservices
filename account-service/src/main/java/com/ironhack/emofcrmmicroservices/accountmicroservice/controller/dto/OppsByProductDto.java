@@ -1,4 +1,4 @@
-package com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos;
+package com.ironhack.emofcrmmicroservices.accountmicroservice.controller.dto;
 
 public class OppsByProductDto {
     private String product;

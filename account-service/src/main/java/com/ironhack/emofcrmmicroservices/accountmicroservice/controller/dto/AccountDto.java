@@ -3,7 +3,7 @@ package com.ironhack.emofcrmmicroservices.accountmicroservice.controller.dto;
 import javax.validation.constraints.*;
 import java.util.*;
 
-public class AccountDTO {
+public class AccountDto {
     private Integer id;
     @NotEmpty
     private String industry;
@@ -18,10 +18,10 @@ public class AccountDTO {
     @NotEmpty
     private List<Integer> opportunityList;
 
-    public AccountDTO() {
+    public AccountDto() {
     }
 
-    public AccountDTO(Integer id, @NotEmpty String industry, @NotNull int employeeCount, @NotEmpty String city,
+    public AccountDto(Integer id, @NotEmpty String industry, @NotNull int employeeCount, @NotEmpty String city,
                       @NotEmpty String country, @NotEmpty List<Integer> contactList, @NotEmpty List<Integer> opportunityList) {
         this.id = id;
         this.industry = industry;

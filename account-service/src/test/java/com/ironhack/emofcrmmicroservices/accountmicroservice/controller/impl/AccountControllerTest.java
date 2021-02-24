@@ -117,8 +117,8 @@ class AccountControllerTest {
     }
 
     @Test
-    void storeAccount_ValidAccountDTO_Created() throws Exception {
-        AccountDTO accountDTO = new AccountDTO();
+    void storeAccount_ValidAccountDto_Created() throws Exception {
+        AccountDto accountDTO = new AccountDto();
         accountDTO.setIndustry("MEDICAL");
         accountDTO.setEmployeeCount(40);
         accountDTO.setCity("Oviedo");
@@ -143,8 +143,8 @@ class AccountControllerTest {
     }
 
     @Test
-    void storeAccount_InvalidAccountDTO_Error() throws Exception {
-        AccountDTO accountDTO = new AccountDTO();
+    void storeAccount_InvalidAccountDto_Error() throws Exception {
+        AccountDto accountDTO = new AccountDto();
         accountDTO.setIndustry("MEDICAL");
         accountDTO.setEmployeeCount(40);
         accountDTO.setCity("");
@@ -168,9 +168,9 @@ class AccountControllerTest {
 
     @Test
     void updateAccount_ValidId_AccountUpdated() throws Exception {
-        UpdateAccountDTO updateAccountDTO = new UpdateAccountDTO(account1.getId(),123,456);
+        UpdateAccountDto updateAccountDto = new UpdateAccountDto(account1.getId(),123,456);
 
-        String body = objectMapper.writeValueAsString(updateAccountDTO);
+        String body = objectMapper.writeValueAsString(updateAccountDto);
 
         MvcResult result = this.mockMvc.perform(
                 put("/update-account")
@@ -188,9 +188,9 @@ class AccountControllerTest {
 
     @Test
     void updateAccount_InvalidId_NotFound() throws Exception {
-        UpdateAccountDTO updateAccountDTO = new UpdateAccountDTO(1000,123,456);
+        UpdateAccountDto updateAccountDto = new UpdateAccountDto(1000,123,456);
 
-        String body = objectMapper.writeValueAsString(updateAccountDTO);
+        String body = objectMapper.writeValueAsString(updateAccountDto);
 
         MvcResult result = this.mockMvc.perform(
                 put("/update-account")

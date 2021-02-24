@@ -2,7 +2,7 @@ package com.ironhack.emofcrmmicroservices.accountmicroservice.controller.dto;
 
 import javax.validation.constraints.*;
 
-public class UpdateAccountDTO {
+public class UpdateAccountDto {
     @NotNull
     private Integer accountId;
     @NotNull
@@ -10,10 +10,10 @@ public class UpdateAccountDTO {
     @NotNull
     private Integer opportunityId;
 
-    public UpdateAccountDTO() {
+    public UpdateAccountDto() {
     }
 
-    public UpdateAccountDTO(@NotNull Integer accountId, @NotNull Integer contactId, @NotNull Integer opportunityId) {
+    public UpdateAccountDto(@NotNull Integer accountId, @NotNull Integer contactId, @NotNull Integer opportunityId) {
         this.accountId = accountId;
         this.contactId = contactId;
         this.opportunityId = opportunityId;
