@@ -217,6 +217,25 @@ public class OpportunityService implements IOpportunityService {
         return result;
     }
 
+    public List<OppsByCityDto> getOppsByCityAndStatus(List<AccountDto> accountDtoList, String status) {
+        List<OppsByCityDto> dtoList = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+        Status checkedStatus = checkStatusFormat(status);
+        for(AccountDto element : accountDtoList){
+            for (Integer oppId : element.getOpportunityList()) {
+                Opportunity opportunity = retrieveOpportunity(oppId);
+                if(opportunity.getStatus().equals(checkedStatus)) {
+                    Integer num = map.get(element.getCity()) != null ? map.get(element.getCity()) + 1 : 1;
+                    map.put(element.getCity(), num);
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            dtoList.add(new OppsByCityDto(entry.getKey(), entry.getValue()));
+        }
+        return dtoList;
+    }
+
     @Override
     public List<OppsByCountryDto> getOppsByCountryAndStatus(List<AccountDto> accountDtoList, String status) {
         List<OppsByCountryDto> dtoList = new ArrayList<>();

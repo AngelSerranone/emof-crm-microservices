@@ -3,6 +3,7 @@ package com.ironhack.emofcrmmicroservices.leadservice.controller.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ironhack.emofcrmmicroservices.leadservice.client.SalesRepClient;
 import com.ironhack.emofcrmmicroservices.leadservice.controller.dto.LeadDto;
+import com.ironhack.emofcrmmicroservices.leadservice.controller.dto.SalesRepDTO;
 import com.ironhack.emofcrmmicroservices.leadservice.model.Lead;
 import com.ironhack.emofcrmmicroservices.leadservice.repository.LeadRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -91,7 +92,7 @@ class LeadControllerTest {
     }
 
     @Test
-    void storeLead_validLead_badRequest() throws Exception {
+    void storeLead_validLead_newLead() throws Exception {
         mockStoreSalesRepDoNothing();
         LeadDto leadDto = new LeadDto("Dragona shrek", "987654321", "fiona@gmail.com", "Cienaga SA", 1);
         String body = objectMapper.writeValueAsString(leadDto);
@@ -187,15 +188,20 @@ class LeadControllerTest {
         ).andExpect(status().isNotFound()).andReturn();
     }
 
+
+    //These methods are to simulate calls to other microservices.
     private void mockStoreSalesRepDoNothing() {
+        Mockito.doReturn(new SalesRepDTO("Mockito", 1)).when(salesRepClient).getSalesrep(anyInt());
         Mockito.doNothing().when(salesRepClient).associateLeadToSalesRep(anyInt(), anyInt());
     }
 
     private void mockStoreSalesRepNotFound() {
+        Mockito.doThrow(new ResponseStatusException(HttpStatus.NOT_FOUND)).when(salesRepClient).getSalesrep(anyInt());
         Mockito.doThrow(new ResponseStatusException(HttpStatus.NOT_FOUND)).when(salesRepClient).associateLeadToSalesRep(anyInt(), anyInt());
     }
 
     private void mockStoreSalesRepServerError() {
+        Mockito.doThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR)).when(salesRepClient).getSalesrep(anyInt());
         Mockito.doThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR)).when(salesRepClient).associateLeadToSalesRep(anyInt(), anyInt());
     }
 }

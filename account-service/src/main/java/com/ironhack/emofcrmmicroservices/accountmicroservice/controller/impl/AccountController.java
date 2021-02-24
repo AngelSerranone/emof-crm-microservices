@@ -42,6 +42,11 @@ public class AccountController implements IAccountController {
         accountService.updateAccount(updateAccountDTO);
     }
 
+    @GetMapping("/report/opps-by-city")
+    public List<OppsByCityDto> getOppCountByCity() {
+        return accountService.getOppCountByCity();
+    }
+
     @GetMapping("/report/opps-by-country")
     public List<OppsByCountryDto> getOppsByCountry() {
         return accountService.getOppsByCountry();

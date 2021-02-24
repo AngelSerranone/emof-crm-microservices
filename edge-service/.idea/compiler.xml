@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="edge-service" target="15" />
+      <module name="edge-service" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

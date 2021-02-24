@@ -2,6 +2,7 @@ package com.ironhackemofcrmmicroservices.edgecontactservice.service.impl;
 
 import com.ironhackemofcrmmicroservices.edgecontactservice.client.LeadClient;
 import com.ironhackemofcrmmicroservices.edgecontactservice.controller.dtos.LeadDto;
+import com.ironhackemofcrmmicroservices.edgecontactservice.service.interfaces.ILeadEdgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
@@ -13,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class LeadEdgeService {
+public class LeadEdgeService implements ILeadEdgeService {
 
     @Autowired
     private LeadClient leadClient;

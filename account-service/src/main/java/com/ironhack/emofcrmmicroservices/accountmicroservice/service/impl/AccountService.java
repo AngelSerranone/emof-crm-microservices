@@ -125,6 +125,15 @@ public class AccountService implements IAccountService {
         }
     }
 
+    public List<OppsByCityDto> getOppCountByCity() {
+        List<Object []> repoList = opportunityIdRepository.getOppCountByCity();
+        List<OppsByCityDto> dtoList = new ArrayList<>();
+        for(Object[] element: repoList) {
+            dtoList.add((new OppsByCityDto((String) element[0], (Integer) element[1])));
+        }
+        return dtoList;
+    }
+
     public List<OppsByCountryDto> getOppsByCountry() {
         List<Object[]> reportList = accountRepository.getOppsByCountry();
         List<OppsByCountryDto> dtoList = new ArrayList<>();

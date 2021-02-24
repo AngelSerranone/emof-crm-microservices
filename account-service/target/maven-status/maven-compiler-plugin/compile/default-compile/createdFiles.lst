@@ -2,6 +2,7 @@ com\ironhack\emofcrmmicroservices\accountmicroservice\model\OpportunityId.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\controller\dto\AccountDTO.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\controller\interfaces\IAccountController.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\repository\AccountRepository.class
+com\ironhack\emofcrmmicroservices\accountmicroservice\controller\dto\OppsByCityDto.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\model\Account.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\repository\ContactIdRepository.class
 com\ironhack\emofcrmmicroservices\accountmicroservice\repository\OpportunityIdRepository.class
