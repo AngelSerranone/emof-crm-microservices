@@ -300,28 +300,43 @@ public class OpportunityService implements IOpportunityService {
 
 
     public Double getMeanQuantityOrderedProducts(){
-        return opportunityRepository.findAvgProductsOrdered();
+        if (opportunityRepository.findAll().size()>0){
+            return opportunityRepository.findAvgProductsOrdered();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Integer getMaxQuantityOrderedProducts(){
-        return opportunityRepository.findMaxProductsOrdered();
+        if (opportunityRepository.findAll().size()>0){
+            return opportunityRepository.findMaxProductsOrdered();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Integer getMinQuantityOrderedProducts(){
-        return opportunityRepository.findMinProductsOrdered();
+        if (opportunityRepository.findAll().size()>0){
+            return opportunityRepository.findMinProductsOrdered();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Double getMedianQuantityOrderedProducts(){
         List<Integer> quantityList = opportunityRepository.findProductsOrdered();
+        if (quantityList.size()>0){
+            Collections.sort(quantityList);
+            Double median;
+            if (quantityList.size() % 2 == 0){
+                median = (quantityList.get(quantityList.size() / 2).doubleValue() + quantityList.get(quantityList.size() / 2 - 1).doubleValue())/2;}
+            else{
+                median = quantityList.get((int) Math.floor(quantityList.size() / 2)).doubleValue();}
 
-        Collections.sort(quantityList);
-        Double median;
-        if (quantityList.size() % 2 == 0){
-            median = (quantityList.get(quantityList.size() / 2).doubleValue() + quantityList.get(quantityList.size() / 2 - 1).doubleValue())/2;}
-        else{
-            median = quantityList.get((int) Math.floor(quantityList.size() / 2)).doubleValue();}
-
-        return median;
+            return median;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
 

@@ -89,4 +89,90 @@ class OpportunityControllerTest {
         mockMvc.perform(put("/close-opportunity").content(body).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent()).andReturn();
         assertEquals(opportunityRepository.findById(oppList.get(0).getId()).get().getStatus(), Status.CLOSED_WON);
     }
+
+    @Test
+    void getMeanQuantityOrderedProducts_Valid_Mean() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/mean")
+        ).andExpect(status().isOk()).andReturn();
+
+        assertTrue(result.getResponse().getContentAsString().contains("35"));
+
+    }
+
+    @Test
+    void getMeanQuantityOrderedProducts_Empty_NotFound() throws Exception {
+
+        opportunityRepository.deleteAll();
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/mean")
+        ).andExpect(status().isNotFound()).andReturn();
+    }
+
+    @Test
+    void getMaxQuantityOrderedProducts_Valid_Max() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/max")
+        ).andExpect(status().isOk()).andReturn();
+
+        assertTrue(result.getResponse().getContentAsString().contains("50"));
+
+    }
+
+    @Test
+    void getMaxQuantityOrderedProducts_Empty_NotFound() throws Exception {
+
+        opportunityRepository.deleteAll();
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/max")
+        ).andExpect(status().isNotFound()).andReturn();
+    }
+
+    @Test
+    void getMinQuantityOrderedProducts_Valid_Min() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/min")
+        ).andExpect(status().isOk()).andReturn();
+
+        assertTrue(result.getResponse().getContentAsString().contains("20"));
+
+    }
+
+    @Test
+    void getMinQuantityOrderedProducts_Empty_NotFound() throws Exception {
+
+        opportunityRepository.deleteAll();
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/min")
+        ).andExpect(status().isNotFound()).andReturn();
+    }
+
+    @Test
+    void getMedianQuantityOrderedProducts_Valid_Median() throws Exception {
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/median")
+        ).andExpect(status().isOk()).andReturn();
+
+        assertTrue(result.getResponse().getContentAsString().contains("35"));
+
+    }
+
+    @Test
+    void getMedianQuantityOrderedProducts_Empty_NotFound() throws Exception {
+
+        opportunityRepository.deleteAll();
+
+        MvcResult result = this.mockMvc.perform(
+                get("/report/quantity-ordered-products/median")
+        ).andExpect(status().isNotFound()).andReturn();
+    }
+
+    
 }

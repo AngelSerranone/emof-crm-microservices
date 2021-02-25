@@ -166,77 +166,108 @@ public class AccountService implements IAccountService {
     public Double getMeanOppsPerAccount() {
         List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
         List<Integer> oppCount = new ArrayList<>();
+        if (oppsList.size()>0){
+            for(Object[] element: oppsList) {
+                oppCount.add((Integer) element[1]);
+            }
 
-        for(Object[] element: oppsList) {
-            oppCount.add((Integer) element[1]);
+            Integer sum = 0;
+            for (Integer count : oppCount){
+                sum += count;
+            }
+            double mean = sum.doubleValue()/oppCount.size();
+
+            return mean;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
-        Integer sum = 0;
-        for (Integer count : oppCount){
-            sum += count;
-        }
-        double mean = sum.doubleValue()/oppCount.size();
-
-        return mean;
     }
 
     public Integer getMaxOppsPerAccount() {
         List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
         List<Integer> oppCount = new ArrayList<>();
-        for(Object[] element: oppsList) {
-            oppCount.add((Integer) element[1]);
+        if (oppsList.size()>0){
+            for(Object[] element: oppsList) {
+                oppCount.add((Integer) element[1]);
+            }
+            return Collections.max(oppCount);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return Collections.max(oppCount);
     }
 
     public Integer getMinOppsPerAccount() {
         List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
         List<Integer> oppCount = new ArrayList<>();
-        for(Object[] element: oppsList) {
-            oppCount.add((Integer) element[1]);
+        if (oppsList.size()>0){
+            for(Object[] element: oppsList) {
+                oppCount.add((Integer) element[1]);
+            }
+            return Collections.min(oppCount);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return Collections.min(oppCount);
     }
 
     public Double getMedianOppsPerAccount() {
         List<Object[]> oppsList = opportunityIdRepository.getOppCountByAccount();
         List<Integer> oppCount = new ArrayList<>();
-        for(Object[] element: oppsList) {
-            oppCount.add((Integer) element[1]);
+        if (oppsList.size()>0){
+            for(Object[] element: oppsList) {
+                oppCount.add((Integer) element[1]);
+            }
+
+            Collections.sort(oppCount);
+            Double median;
+            if (oppCount.size() % 2 == 0){
+                median = (oppCount.get(oppCount.size() / 2).doubleValue() + oppCount.get(oppCount.size() / 2 - 1).doubleValue())/2;}
+            else{
+                median = oppCount.get((int) Math.floor(oppCount.size() / 2)).doubleValue();}
+
+            return median;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
-        Collections.sort(oppCount);
-        Double median;
-        if (oppCount.size() % 2 == 0){
-            median = (oppCount.get(oppCount.size() / 2).doubleValue() + oppCount.get(oppCount.size() / 2 - 1).doubleValue())/2;}
-        else{
-            median = oppCount.get((int) Math.floor(oppCount.size() / 2)).doubleValue();}
-
-        return median;
     }
 
     public Double getMeanEmployeeCount() {
-        return accountRepository.findAvgEmployeeCount();
+        if (accountRepository.findAll().size()>0){
+            return accountRepository.findAvgEmployeeCount();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Integer getMaxEmployeeCount() {
-        return accountRepository.findMaxEmployeeCount();
+        if (accountRepository.findAll().size()>0){
+            return accountRepository.findMaxEmployeeCount();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Integer getMinEmployeeCount() {
-        return accountRepository.findMinEmployeeCount();
+        if (accountRepository.findAll().size()>0){
+            return accountRepository.findMinEmployeeCount();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Double getMedianEmployeeCount() {
         List<Integer> employeeCountList = accountRepository.medianEmployeeCount();
-        Collections.sort(employeeCountList);
-        Double median;
-        if (employeeCountList.size() % 2 == 0){
-            median = (employeeCountList.get(employeeCountList.size() / 2).doubleValue() + employeeCountList.get(employeeCountList.size() / 2 - 1).doubleValue())/2;}
-        else{
-            median = employeeCountList.get((int) Math.floor(employeeCountList.size() / 2)).doubleValue();}
+        if (employeeCountList.size()>0){
+            Collections.sort(employeeCountList);
+            Double median;
+            if (employeeCountList.size() % 2 == 0){
+                median = (employeeCountList.get(employeeCountList.size() / 2).doubleValue() + employeeCountList.get(employeeCountList.size() / 2 - 1).doubleValue())/2;}
+            else{
+                median = employeeCountList.get((int) Math.floor(employeeCountList.size() / 2)).doubleValue();}
 
-        return median;
+            return median;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
 

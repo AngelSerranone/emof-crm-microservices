@@ -8,19 +8,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="account-microservice" />
         <module name="opportunity-service" />
-        <module name="edge-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account-microservice" target="15" />
-      <module name="edge-service" target="15" />
       <module name="opportunity-service" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account-microservice" options="-parameters" />
-      <module name="edge-service" options="-parameters" />
       <module name="opportunity-service" options="-parameters" />
     </option>
   </component>
