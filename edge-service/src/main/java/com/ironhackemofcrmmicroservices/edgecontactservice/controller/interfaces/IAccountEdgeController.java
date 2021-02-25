@@ -15,19 +15,4 @@ public interface IAccountEdgeController {
 
     void updateAccount(UpdateAccountDto updateAccountDTO);
 
-    public Double getMeanOppsPerAccount();
-
-    public Integer getMaxOppsPerAccount();
-
-    public Integer getMinOppsPerAccount();
-
-    public Double getMedianOppsPerAccount();
-
-    public Double getMeanEmployeeCount();
-
-    public Integer getMaxEmployeeCount();
-
-    public Integer getMinEmployeeCount();
-
-    public Double getMedianEmployeeCount();
 }

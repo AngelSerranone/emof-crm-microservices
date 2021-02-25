@@ -72,4 +72,64 @@ public class ReportEdgeController implements IReportEdgeController {
     public List<OppsByCountryDto> getOppsByCountryAndStatus(String status) {
         return reportEdgeService.getOppsByCountryAndStatus(status);
     }
+
+    @GetMapping("/report/opps-per-account/mean")
+    public Double getMeanOppsPerAccount() {
+        return reportEdgeService.getMeanOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/max")
+    public Integer getMaxOppsPerAccount() {
+        return reportEdgeService.getMaxOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/min")
+    public Integer getMinOppsPerAccount() {
+        return reportEdgeService.getMinOppsPerAccount();
+    }
+
+    @GetMapping("/report/opps-per-account/median")
+    public Double getMedianOppsPerAccount() {
+        return reportEdgeService.getMedianOppsPerAccount();
+    }
+
+    @GetMapping("/report/employee-count/mean")
+    public Double getMeanEmployeeCount() {
+        return reportEdgeService.getMeanEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/max")
+    public Integer getMaxEmployeeCount() {
+        return reportEdgeService.getMaxEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/min")
+    public Integer getMinEmployeeCount() {
+        return reportEdgeService.getMinEmployeeCount();
+    }
+
+    @GetMapping("/report/employee-count/median")
+    public Double getMedianEmployeeCount() {
+        return reportEdgeService.getMedianEmployeeCount();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/mean")
+    public Double getMeanQuantityOrderedProducts() {
+        return reportEdgeService.getMeanQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/max")
+    public Integer getMaxQuantityOrderedProducts() {
+        return reportEdgeService.getMaxQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/min")
+    public Integer getMinQuantityOrderedProducts() {
+        return reportEdgeService.getMinQuantityOrderedProducts();
+    }
+
+    @GetMapping("/report/quantity-ordered-products/median")
+    public Double getMedianQuantityOrderedProducts() {
+        return reportEdgeService.getMedianQuantityOrderedProducts();
+    }
 }

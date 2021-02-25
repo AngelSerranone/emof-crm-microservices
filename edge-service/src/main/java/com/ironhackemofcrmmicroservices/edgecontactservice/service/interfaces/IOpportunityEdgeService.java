@@ -12,11 +12,5 @@ public interface IOpportunityEdgeService {
 
     OpportunityDto getOpportunity(Integer id);
 
-    Double getMeanQuantityOrderedProducts();
 
-    Integer getMaxQuantityOrderedProducts();
-
-    Integer getMinQuantityOrderedProducts();
-
-    Double getMedianQuantityOrderedProducts();
 }

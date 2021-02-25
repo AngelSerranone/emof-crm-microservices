@@ -26,4 +26,28 @@ public interface IReportEdgeService {
 	List<OppsByCountryDto> getOppsByCountry();
 
     List<OppsByCountryDto> getOppsByCountryAndStatus(String status);
+
+    public Double getMeanOppsPerAccount();
+
+    public Integer getMaxOppsPerAccount();
+
+    public Integer getMinOppsPerAccount();
+
+    public Double getMedianOppsPerAccount();
+
+    public Double getMeanEmployeeCount();
+
+    public Integer getMaxEmployeeCount();
+
+    public Integer getMinEmployeeCount();
+
+    public Double getMedianEmployeeCount();
+
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
 }

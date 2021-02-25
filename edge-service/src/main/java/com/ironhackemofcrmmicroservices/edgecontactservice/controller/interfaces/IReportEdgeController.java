@@ -24,4 +24,28 @@ public interface IReportEdgeController {
     List<OppsByCountryDto> getOppsByCountry();
 
     List<OppsByCountryDto> getOppsByCountryAndStatus(String status);
+
+    Double getMeanOppsPerAccount();
+
+    Integer getMaxOppsPerAccount();
+
+    Integer getMinOppsPerAccount();
+
+    Double getMedianOppsPerAccount();
+
+    Double getMeanEmployeeCount();
+
+    Integer getMaxEmployeeCount();
+
+    Integer getMinEmployeeCount();
+
+    Double getMedianEmployeeCount();
+
+    Double getMeanQuantityOrderedProducts();
+
+    Integer getMaxQuantityOrderedProducts();
+
+    Integer getMinQuantityOrderedProducts();
+
+    Double getMedianQuantityOrderedProducts();
 }

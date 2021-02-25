@@ -9,11 +9,4 @@ public interface IOpportunityEdgeController {
 
     void closeOpportunity(CloseOpportunityDto closeOpportunityDto);
 
-    Double getMeanQuantityOrderedProducts();
-
-    Integer getMaxQuantityOrderedProducts();
-
-    Integer getMinQuantityOrderedProducts();
-
-    Double getMedianQuantityOrderedProducts();
 }

@@ -38,44 +38,4 @@ public class AccountEdgeController implements IAccountEdgeController {
         accountEdgeService.updateAccount(updateAccountDTO);
     }
 
-    @GetMapping("/report/opps-per-account/mean")
-    public Double getMeanOppsPerAccount() {
-        return accountEdgeService.getMeanOppsPerAccount();
-    }
-
-    @GetMapping("/report/opps-per-account/max")
-    public Integer getMaxOppsPerAccount() {
-        return accountEdgeService.getMaxOppsPerAccount();
-    }
-
-    @GetMapping("/report/opps-per-account/min")
-    public Integer getMinOppsPerAccount() {
-        return accountEdgeService.getMinOppsPerAccount();
-    }
-
-    @GetMapping("/report/opps-per-account/median")
-    public Double getMedianOppsPerAccount() {
-        return accountEdgeService.getMedianOppsPerAccount();
-    }
-
-    @GetMapping("/report/employee-count/mean")
-    public Double getMeanEmployeeCount() {
-        return accountEdgeService.getMeanEmployeeCount();
-    }
-
-    @GetMapping("/report/employee-count/max")
-    public Integer getMaxEmployeeCount() {
-        return accountEdgeService.getMaxEmployeeCount();
-    }
-
-    @GetMapping("/report/employee-count/min")
-    public Integer getMinEmployeeCount() {
-        return accountEdgeService.getMinEmployeeCount();
-    }
-
-    @GetMapping("/report/employee-count/median")
-    public Double getMedianEmployeeCount() {
-        return accountEdgeService.getMedianEmployeeCount();
-    }
-
 }
